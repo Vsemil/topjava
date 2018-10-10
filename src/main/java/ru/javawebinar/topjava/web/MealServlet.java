@@ -34,7 +34,6 @@ public class MealServlet extends HttpServlet {
                 new Meal(LocalDateTime.of(2015, Month.MAY, 31, 13, 0), "Обед", 500),
                 new Meal(LocalDateTime.of(2015, Month.MAY, 31, 20, 0), "Ужин", 510)
         );
-        request.setAttribute("localDateTimeFormat", new SimpleDateFormat("yyyy-MM-dd hh:mm"));
         request.setAttribute("meals", MealsUtil.getFilteredWithExceeded(meals, LocalTime.of(0, 0), LocalTime.of(23, 0), 2000));
         request.getRequestDispatcher("/meals.jsp").forward(request, response);
     }
