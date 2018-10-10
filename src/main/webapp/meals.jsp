@@ -29,5 +29,7 @@
         </c:forEach>
     </tbody>
 </table>
+
+<a type="button" href="editMeal.jsp" >Add new Meal</a>
 </body>
 </html>

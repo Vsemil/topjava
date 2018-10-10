@@ -26,7 +26,7 @@ public class MealServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("!!!!!");
-        request.getRequestDispatcher("/meals.jsp").forward(request, response);
+        response.sendRedirect("meals");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,10 +40,5 @@ public class MealServlet extends HttpServlet {
             request.setAttribute("meals", MealsUtil.getFilteredWithExceeded(mealService.getAll(), LocalTime.of(0, 0), LocalTime.of(23, 0), 2000));
             request.getRequestDispatcher("/meals.jsp").forward(request, response);
         }
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doDelete(req, resp);
     }
 }
