@@ -23,6 +23,8 @@
                 <td>${parsedDate}</td>
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
+                <td><a href="meals?mealId=${meal.id}">Edit Meal</a></td>
+                <td><a href="meals?mealId=${meal.id}">Edit Meal</a></td>
             </tr>
         </c:forEach>
     </tbody>
