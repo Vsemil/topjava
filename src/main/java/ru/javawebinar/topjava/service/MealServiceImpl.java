@@ -43,7 +43,11 @@ public class MealServiceImpl implements MealService {
 
     @Override
     public void update(Meal meal, int userId) {
-        checkNotFoundWithId(repository.save(meal), meal.getId());
+        if (meal.getUserId() == userId) {
+            checkNotFoundWithId(repository.save(meal), meal.getId());
+        } else {
+            throw new NotFoundException("");
+        }
     }
 
     @Override
