@@ -28,8 +28,8 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public void delete(int id) {
-        repository.remove(id);
+    public boolean delete(int id) {
+        return repository.remove(id) != null;
     }
 
     @Override
@@ -38,18 +38,21 @@ public class InMemoryMealRepositoryImpl implements MealRepository {
     }
 
     @Override
-    public Collection<Meal> getAll() {
-        return repository.values();
+    public List<Meal> getAll() {
+        List<Meal> meals = new ArrayList<>(repository.values());
+        meals.sort(Comparator.comparing(Meal::getDateTime).reversed());
+        return meals;
     }
 
     @Override
-    public Collection<Meal> getAllByUserId(int userId) {
-        Set<Meal> meals = new TreeSet<>(Comparator.comparing(Meal::getDateTime));
+    public List<Meal> getAllByUserId(int userId) {
+        List<Meal> meals = new ArrayList<>();
         repository.forEach((id, meal) -> {
             if (userId == meal.getUserId()) {
                 meals.add(meal);
             }
         });
+        meals.sort(Comparator.comparing(Meal::getDateTime).reversed());
         return meals.isEmpty()? null: meals;
     }
 }

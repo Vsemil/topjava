@@ -1,17 +1,18 @@
 package ru.javawebinar.topjava.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.javawebinar.topjava.model.Meal;
 
-import java.util.Collection;
-
+import java.util.List;
+@Repository
 public interface MealRepository {
     Meal save(Meal meal);
 
-    void delete(int id);
+    boolean delete(int id);
 
     Meal get(int id);
 
-    Collection<Meal> getAll();
+    List<Meal> getAll();
 
-    Collection<Meal> getAllByUserId(int userId);
+    List<Meal> getAllByUserId(int userId);
 }
